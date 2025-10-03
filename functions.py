@@ -271,26 +271,7 @@ def st_warning():
 
 def avs_config(args):
     # Only show the warning to devices with max98357a
-    override_avs = True
-    if path_exists("/sys/bus/acpi/devices/MX98357A:00"):
-        if args.force_avs_install:
-            print_error(
-                "WARNING: Your device has max98357a and can cause permanent damage to your speakers if you set the volume too loud!")
-            while input('Type "I understand the risk of permanently damaging my speakers" in all caps to continue: ')\
-                != "I UNDERSTAND THE RISK OF PERMANENTLY DAMAGING MY SPEAKERS":
-                print_error("Try again")
-            override_avs = True
-        else:
-            print_error(
-                "WARNING: Your device has max98357a and can cause permanent damage to your speakers if you "
-                    "set the volume too loud! As a safety precaution devices with max98357a have speakers "
-                    "disabled until a fix is in place. Headphones and HDMI audio are safe from this.")
-            print_question("If you want to disable this check, restart the script with --force-avs-install")
-
-            while input('Type "I Understand my speakers will not work since my device has max98357a!" in all caps to continue: ')\
-                != "I UNDERSTAND MY SPEAKERS WILL NOT WORK SINCE MY DEVICE HAS MAX98357A!":
-                print_error("Try again")
-            override_avs = False
+    override_avs = False
 
     # avs tplg is from https://github.com/thesofproject/avs-topology-xml, but isn't packaged in distros yet
     print_header("Installing topology")
