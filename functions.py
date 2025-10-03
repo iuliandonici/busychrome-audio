@@ -271,7 +271,7 @@ def st_warning():
 
 def avs_config(args):
     # Only show the warning to devices with max98357a
-    override_avs = False
+    override_avs = True
     if path_exists("/sys/bus/acpi/devices/MX98357A:00"):
         if args.force_avs_install:
             print_error(
